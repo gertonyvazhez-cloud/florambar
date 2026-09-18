@@ -1,1 +1,465 @@
 @import url('./theme-reference.css?v=3');
+
+/* =========================================================
+   FLORAMBAR — AJUSTES EXCLUSIVOS PARA COMPUTADORA
+   El diseño móvil de theme-reference.css se conserva intacto.
+   ========================================================= */
+
+@media (min-width:1001px){
+
+  body{
+    font-size:16px;
+    background:#fffdf8;
+  }
+
+  .topbar{
+    min-height:38px;
+    font-size:13px;
+  }
+
+  .header{
+    width:min(1200px,calc(100% - 48px));
+    min-height:104px;
+    grid-template-columns:300px minmax(340px,1fr) 74px 74px 180px;
+    gap:14px;
+  }
+
+  .brand img{
+    width:84px;
+    height:76px;
+  }
+
+  .brand-text strong{
+    font-size:34px;
+  }
+
+  .brand-text small{
+    font-size:11px;
+  }
+
+  .header-search{
+    height:50px;
+  }
+
+  .header-search input{
+    font-size:14px;
+  }
+
+  .header-action small{
+    font-size:11px;
+  }
+
+  .header-whatsapp{
+    min-height:52px;
+  }
+
+  .header-whatsapp small{
+    font-size:10px;
+  }
+
+  .header-whatsapp b{
+    font-size:13px;
+  }
+
+  .nav{
+    min-height:50px;
+    gap:14px;
+  }
+
+  .nav a{
+    padding:10px 24px;
+    font-size:13px;
+  }
+
+  .hero{
+    width:min(1200px,calc(100% - 48px));
+    min-height:430px;
+    margin-top:22px;
+    margin-bottom:30px;
+    grid-template-columns:51% 49%;
+  }
+
+  .hero-copy{
+    padding:55px 52px 52px 84px;
+  }
+
+  .hero-eyebrow{
+    font-size:12px;
+  }
+
+  .hero-title{
+    max-width:540px;
+    font-size:58px;
+  }
+
+  .hero-message{
+    max-width:480px;
+    font-size:18px;
+  }
+
+  .hero-secondary{
+    max-width:460px;
+    font-size:13px;
+    line-height:1.55;
+  }
+
+  .hero-actions .btn{
+    min-height:46px;
+    padding:12px 23px;
+    font-size:13px;
+  }
+
+  .hero-trust{
+    font-size:11px;
+  }
+
+  .hero-art{
+    min-height:430px;
+  }
+
+  .promo-strip{
+    min-height:55px;
+  }
+
+  .promo-strip b{
+    font-size:20px;
+  }
+
+  .promo-strip span{
+    font-size:11px;
+  }
+
+  .category-section,
+  .store-highlights,
+  .smart-search,
+  .catalog-section,
+  .info-section,
+  .benefits,
+  .learn,
+  .contact{
+    width:min(1160px,calc(100% - 48px));
+  }
+
+  .mini-heading>span,
+  .section-eyebrow,
+  .eyebrow{
+    font-size:11px;
+  }
+
+  .mini-heading h2,
+  .section-heading h2{
+    font-size:34px;
+  }
+
+  .mini-heading p,
+  .section-heading p{
+    font-size:13px;
+  }
+
+  .quick-cats{
+    gap:18px;
+  }
+
+  .cat-circle{
+    width:104px;
+    height:104px;
+    font-size:43px;
+  }
+
+  .quick-cats b{
+    font-size:12px;
+  }
+
+  .store-highlights{
+    min-height:86px;
+    padding:17px 20px;
+  }
+
+  .store-highlights>div>span{
+    font-size:28px;
+  }
+
+  .store-highlights strong{
+    font-size:13px;
+  }
+
+  .store-highlights p{
+    font-size:10px;
+  }
+
+  .smart-search{
+    min-height:78px;
+    padding:16px 20px;
+    grid-template-columns:52px minmax(220px,.75fr) minmax(360px,1.45fr);
+  }
+
+  .search-icon{
+    width:46px;
+    height:46px;
+  }
+
+  .search-text strong{
+    font-size:17px;
+  }
+
+  .search-text small{
+    font-size:10px;
+  }
+
+  .smart-search-field{
+    height:46px;
+  }
+
+  .smart-search-field input{
+    font-size:12px;
+  }
+
+  .smart-search-field button{
+    min-width:112px;
+    font-size:12px;
+  }
+
+  .total-card{
+    min-height:78px;
+  }
+
+  .total-card strong{
+    font-size:42px;
+  }
+
+  .total-card b{
+    font-size:15px;
+  }
+
+  .total-card small,
+  .results-info{
+    font-size:10px;
+  }
+
+  #catalog-grid{
+    gap:18px;
+    padding:7px 4px 22px;
+  }
+
+  #catalog-grid .product-card{
+    flex-basis:calc((100% - 54px)/4);
+    border-radius:17px;
+  }
+
+  .product-image-wrap{
+    height:245px;
+  }
+
+  .product-body{
+    padding:14px 15px 16px;
+  }
+
+  .product-body .tag,
+  .modal-body .tag{
+    font-size:9px;
+    padding:5px 10px;
+  }
+
+  .product-body h3{
+    font-size:18px;
+  }
+
+  .product-scientific{
+    font-size:10px;
+  }
+
+  .product-stock{
+    font-size:10px;
+  }
+
+  .product-actions button{
+    min-height:38px;
+    font-size:10px;
+  }
+
+  .service-grid article{
+    border-radius:14px;
+  }
+
+  .service-image{
+    height:145px;
+    font-size:52px;
+  }
+
+  .service-copy{
+    padding:14px;
+  }
+
+  .service-copy h3{
+    font-size:13px;
+  }
+
+  .service-copy p{
+    font-size:10px;
+    line-height:1.45;
+  }
+
+  .benefits>div{
+    min-height:96px;
+    padding:16px;
+  }
+
+  .benefits b{
+    font-size:12px;
+  }
+
+  .benefits p{
+    font-size:10px;
+  }
+
+  .learn{
+    padding:30px 34px;
+  }
+
+  .learn h2{
+    font-size:30px;
+  }
+
+  .learn p,
+  .learn-cards span{
+    font-size:11px;
+  }
+
+  .contact{
+    padding:28px 34px;
+  }
+
+  .contact h2{
+    font-size:30px;
+  }
+
+  .contact p{
+    font-size:11px;
+  }
+
+  footer{
+    padding-top:36px;
+    padding-bottom:36px;
+  }
+
+  .footer-brand b{
+    font-size:22px;
+  }
+
+  .footer-brand span,
+  footer a,
+  footer span,
+  footer p{
+    font-size:10px;
+  }
+
+  footer b{
+    font-size:12px;
+  }
+
+  /* ---------- FICHA TÉCNICA EN COMPUTADORA ---------- */
+
+  .modal{
+    padding:30px;
+    align-items:center;
+  }
+
+  .modal-box{
+    width:min(980px,calc(100vw - 80px));
+    max-height:88vh;
+    overflow:auto;
+    grid-template-columns:44% 56%;
+    grid-template-rows:auto auto;
+    align-items:stretch;
+    border-radius:22px;
+    box-shadow:0 22px 65px rgba(7,54,31,.28);
+  }
+
+  .modal-box>img{
+    grid-column:1;
+    grid-row:1;
+    width:100%;
+    height:100%;
+    min-height:520px;
+    max-height:650px;
+    object-fit:cover;
+    background:#eef5e9;
+  }
+
+  .modal-body{
+    grid-column:2;
+    grid-row:1;
+    min-width:0;
+    padding:42px 42px 30px;
+    align-self:stretch;
+  }
+
+  .modal-body h2{
+    margin:10px 0 5px;
+    font-size:34px;
+  }
+
+  .modal-body em,
+  .modal-body p{
+    font-size:12px;
+    line-height:1.55;
+  }
+
+  .specs{
+    margin-top:18px;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .specs>div{
+    padding:12px;
+  }
+
+  .specs b{
+    margin-bottom:4px;
+    font-size:10px;
+  }
+
+  .specs span{
+    font-size:10px;
+    line-height:1.4;
+  }
+
+  .modal-actions{
+    margin-top:20px;
+  }
+
+  .modal-actions .btn{
+    min-height:44px;
+    font-size:11px;
+  }
+
+  #ficha-navigation{
+    grid-column:1 / -1 !important;
+    grid-row:2 !important;
+    margin:0 !important;
+    padding:13px 18px 15px !important;
+    border-top:1px solid #e8ece5;
+    background:#fffdf8;
+  }
+
+  #ficha-prev,
+  #ficha-next{
+    min-width:120px;
+    padding:10px 18px !important;
+    font-size:12px !important;
+  }
+
+  #ficha-position{
+    font-size:12px !important;
+  }
+
+  .modal-box>.close{
+    width:42px;
+    height:42px;
+    right:15px;
+    top:15px;
+    background:rgba(255,255,255,.94);
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
+  }
+}
