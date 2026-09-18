@@ -1,465 +1,53 @@
-@import url('./theme-reference.css?v=3');
+@import url('./theme-reference.css?v=4');
 
 /* =========================================================
-   FLORAMBAR — AJUSTES EXCLUSIVOS PARA COMPUTADORA
-   El diseño móvil de theme-reference.css se conserva intacto.
+   FLORAMBAR — RESPONSIVE FINAL
+   Misma identidad visual en computadora, tablet y celular
    ========================================================= */
 
+:root{--fb-green:#07633b;--fb-green2:#0b8248;--fb-pink:#f21f70;--fb-brown:#6f2f1e;--fb-cream:#fffdf7;--fb-line:#e4e7df;--fb-shadow:0 8px 24px rgba(24,78,48,.12)}
+html,body{max-width:100%;overflow-x:hidden}body{background:var(--fb-cream)}
+.topbar{position:relative;z-index:80}.header{position:relative;z-index:70;background:rgba(255,253,247,.98)}.brand img{object-fit:contain}.header-search{min-width:0}.nav{position:relative;z-index:65}
+
+/* HERO */
+.hero{isolation:isolate;border:1px solid rgba(22,91,55,.07)}.hero-copy{min-width:0}.hero-title{max-width:540px}.hero-art{background-image:linear-gradient(90deg,rgba(255,255,255,.04),rgba(4,69,38,.04)),url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Indoor%20Monstera%20deliciosa.jpg?width=1400');background-size:cover;background-position:center}
+
+/* CATEGORÍAS Y CATÁLOGO */
+.quick-cats{align-items:start}.quick-cats button{min-width:0}.quick-cats b{text-align:center;line-height:1.2}#catalog-grid{align-items:stretch}#catalog-grid .product-card{display:flex;flex-direction:column}#catalog-grid .product-card .product-body{display:flex;flex:1;flex-direction:column}.product-actions{margin-top:auto}.product-image-wrap>img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* FICHA TÉCNICA */
+.modal{padding:24px;align-items:center;justify-content:center;overflow:auto}.modal.show{display:flex}.modal-box{position:relative;width:min(980px,94vw);max-height:88vh;margin:auto;overflow:hidden;display:grid;grid-template-columns:minmax(340px,44%) minmax(0,56%);grid-template-rows:auto 1fr;border-radius:22px;background:#fff;box-shadow:0 24px 70px rgba(15,50,31,.24)}.modal-box>#modal-image{grid-column:1;grid-row:1 / span 2;width:100%;height:100%;min-height:520px;max-height:88vh;object-fit:cover;background:#edf5e9}.modal-box>#ficha-navigation{grid-column:2;grid-row:1;margin:0!important;padding:18px 22px 8px!important}.modal-body{grid-column:2;grid-row:2;min-width:0;overflow-y:auto;padding:10px 30px 30px!important}.modal-body h2{font-size:30px;line-height:1.05;color:var(--fb-brown)}.modal-body>em{display:block;margin-top:4px;color:#7b837e}.modal-body>p{line-height:1.55}.specs{display:grid;grid-template-columns:1fr 1fr;gap:10px}.specs>div{min-width:0}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.modal .close{z-index:20}
+
+/* COMPUTADORA */
 @media (min-width:1001px){
-
-  body{
-    font-size:16px;
-    background:#fffdf8;
-  }
-
-  .topbar{
-    min-height:38px;
-    font-size:13px;
-  }
-
-  .header{
-    width:min(1200px,calc(100% - 48px));
-    min-height:104px;
-    grid-template-columns:300px minmax(340px,1fr) 74px 74px 180px;
-    gap:14px;
-  }
-
-  .brand img{
-    width:84px;
-    height:76px;
-  }
-
-  .brand-text strong{
-    font-size:34px;
-  }
-
-  .brand-text small{
-    font-size:11px;
-  }
-
-  .header-search{
-    height:50px;
-  }
-
-  .header-search input{
-    font-size:14px;
-  }
-
-  .header-action small{
-    font-size:11px;
-  }
-
-  .header-whatsapp{
-    min-height:52px;
-  }
-
-  .header-whatsapp small{
-    font-size:10px;
-  }
-
-  .header-whatsapp b{
-    font-size:13px;
-  }
-
-  .nav{
-    min-height:50px;
-    gap:14px;
-  }
-
-  .nav a{
-    padding:10px 24px;
-    font-size:13px;
-  }
-
-  .hero{
-    width:min(1200px,calc(100% - 48px));
-    min-height:430px;
-    margin-top:22px;
-    margin-bottom:30px;
-    grid-template-columns:51% 49%;
-  }
-
-  .hero-copy{
-    padding:55px 52px 52px 84px;
-  }
-
-  .hero-eyebrow{
-    font-size:12px;
-  }
-
-  .hero-title{
-    max-width:540px;
-    font-size:58px;
-  }
-
-  .hero-message{
-    max-width:480px;
-    font-size:18px;
-  }
-
-  .hero-secondary{
-    max-width:460px;
-    font-size:13px;
-    line-height:1.55;
-  }
-
-  .hero-actions .btn{
-    min-height:46px;
-    padding:12px 23px;
-    font-size:13px;
-  }
-
-  .hero-trust{
-    font-size:11px;
-  }
-
-  .hero-art{
-    min-height:430px;
-  }
-
-  .promo-strip{
-    min-height:55px;
-  }
-
-  .promo-strip b{
-    font-size:20px;
-  }
-
-  .promo-strip span{
-    font-size:11px;
-  }
-
-  .category-section,
-  .store-highlights,
-  .smart-search,
-  .catalog-section,
-  .info-section,
-  .benefits,
-  .learn,
-  .contact{
-    width:min(1160px,calc(100% - 48px));
-  }
-
-  .mini-heading>span,
-  .section-eyebrow,
-  .eyebrow{
-    font-size:11px;
-  }
-
-  .mini-heading h2,
-  .section-heading h2{
-    font-size:34px;
-  }
-
-  .mini-heading p,
-  .section-heading p{
-    font-size:13px;
-  }
-
-  .quick-cats{
-    gap:18px;
-  }
-
-  .cat-circle{
-    width:104px;
-    height:104px;
-    font-size:43px;
-  }
-
-  .quick-cats b{
-    font-size:12px;
-  }
-
-  .store-highlights{
-    min-height:86px;
-    padding:17px 20px;
-  }
-
-  .store-highlights>div>span{
-    font-size:28px;
-  }
-
-  .store-highlights strong{
-    font-size:13px;
-  }
-
-  .store-highlights p{
-    font-size:10px;
-  }
-
-  .smart-search{
-    min-height:78px;
-    padding:16px 20px;
-    grid-template-columns:52px minmax(220px,.75fr) minmax(360px,1.45fr);
-  }
-
-  .search-icon{
-    width:46px;
-    height:46px;
-  }
-
-  .search-text strong{
-    font-size:17px;
-  }
-
-  .search-text small{
-    font-size:10px;
-  }
-
-  .smart-search-field{
-    height:46px;
-  }
-
-  .smart-search-field input{
-    font-size:12px;
-  }
-
-  .smart-search-field button{
-    min-width:112px;
-    font-size:12px;
-  }
-
-  .total-card{
-    min-height:78px;
-  }
-
-  .total-card strong{
-    font-size:42px;
-  }
-
-  .total-card b{
-    font-size:15px;
-  }
-
-  .total-card small,
-  .results-info{
-    font-size:10px;
-  }
-
-  #catalog-grid{
-    gap:18px;
-    padding:7px 4px 22px;
-  }
-
-  #catalog-grid .product-card{
-    flex-basis:calc((100% - 54px)/4);
-    border-radius:17px;
-  }
-
-  .product-image-wrap{
-    height:245px;
-  }
-
-  .product-body{
-    padding:14px 15px 16px;
-  }
-
-  .product-body .tag,
-  .modal-body .tag{
-    font-size:9px;
-    padding:5px 10px;
-  }
-
-  .product-body h3{
-    font-size:18px;
-  }
-
-  .product-scientific{
-    font-size:10px;
-  }
-
-  .product-stock{
-    font-size:10px;
-  }
-
-  .product-actions button{
-    min-height:38px;
-    font-size:10px;
-  }
-
-  .service-grid article{
-    border-radius:14px;
-  }
-
-  .service-image{
-    height:145px;
-    font-size:52px;
-  }
-
-  .service-copy{
-    padding:14px;
-  }
-
-  .service-copy h3{
-    font-size:13px;
-  }
-
-  .service-copy p{
-    font-size:10px;
-    line-height:1.45;
-  }
-
-  .benefits>div{
-    min-height:96px;
-    padding:16px;
-  }
-
-  .benefits b{
-    font-size:12px;
-  }
-
-  .benefits p{
-    font-size:10px;
-  }
-
-  .learn{
-    padding:30px 34px;
-  }
-
-  .learn h2{
-    font-size:30px;
-  }
-
-  .learn p,
-  .learn-cards span{
-    font-size:11px;
-  }
-
-  .contact{
-    padding:28px 34px;
-  }
-
-  .contact h2{
-    font-size:30px;
-  }
-
-  .contact p{
-    font-size:11px;
-  }
-
-  footer{
-    padding-top:36px;
-    padding-bottom:36px;
-  }
-
-  .footer-brand b{
-    font-size:22px;
-  }
-
-  .footer-brand span,
-  footer a,
-  footer span,
-  footer p{
-    font-size:10px;
-  }
-
-  footer b{
-    font-size:12px;
-  }
-
-  /* ---------- FICHA TÉCNICA EN COMPUTADORA ---------- */
-
-  .modal{
-    padding:30px;
-    align-items:center;
-  }
-
-  .modal-box{
-    width:min(980px,calc(100vw - 80px));
-    max-height:88vh;
-    overflow:auto;
-    grid-template-columns:44% 56%;
-    grid-template-rows:auto auto;
-    align-items:stretch;
-    border-radius:22px;
-    box-shadow:0 22px 65px rgba(7,54,31,.28);
-  }
-
-  .modal-box>img{
-    grid-column:1;
-    grid-row:1;
-    width:100%;
-    height:100%;
-    min-height:520px;
-    max-height:650px;
-    object-fit:cover;
-    background:#eef5e9;
-  }
-
-  .modal-body{
-    grid-column:2;
-    grid-row:1;
-    min-width:0;
-    padding:42px 42px 30px;
-    align-self:stretch;
-  }
-
-  .modal-body h2{
-    margin:10px 0 5px;
-    font-size:34px;
-  }
-
-  .modal-body em,
-  .modal-body p{
-    font-size:12px;
-    line-height:1.55;
-  }
-
-  .specs{
-    margin-top:18px;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-
-  .specs>div{
-    padding:12px;
-  }
-
-  .specs b{
-    margin-bottom:4px;
-    font-size:10px;
-  }
-
-  .specs span{
-    font-size:10px;
-    line-height:1.4;
-  }
-
-  .modal-actions{
-    margin-top:20px;
-  }
-
-  .modal-actions .btn{
-    min-height:44px;
-    font-size:11px;
-  }
-
-  #ficha-navigation{
-    grid-column:1 / -1 !important;
-    grid-row:2 !important;
-    margin:0 !important;
-    padding:13px 18px 15px !important;
-    border-top:1px solid #e8ece5;
-    background:#fffdf8;
-  }
-
-  #ficha-prev,
-  #ficha-next{
-    min-width:120px;
-    padding:10px 18px !important;
-    font-size:12px !important;
-  }
-
-  #ficha-position{
-    font-size:12px !important;
-  }
-
-  .modal-box>.close{
-    width:42px;
-    height:42px;
-    right:15px;
-    top:15px;
-    background:rgba(255,255,255,.94);
-    box-shadow:0 3px 12px rgba(0,0,0,.12);
-  }
+ body{font-size:16px}.topbar{min-height:38px;font-size:13px}.header{width:min(1200px,calc(100% - 48px));min-height:100px;grid-template-columns:285px minmax(330px,1fr) 70px 70px 175px;gap:13px}.brand img{width:82px;height:74px}.brand-text strong{font-size:34px}.brand-text small{font-size:11px}.header-search{height:50px}.header-search input{font-size:13px}.nav{min-height:48px;gap:10px}.nav a{padding:9px 22px;font-size:12px}
+ .hero{width:min(1200px,calc(100% - 48px));min-height:430px;margin:18px auto 27px;grid-template-columns:51% 49%;border-radius:24px}.hero-copy{padding:54px 48px 50px 80px}.hero-eyebrow{font-size:12px}.hero-title{font-size:58px}.hero-message{font-size:18px}.hero-secondary{font-size:12px}.hero-art{min-height:430px}.hero-actions .btn{min-height:46px;padding:12px 23px;font-size:13px}.hero-trust{font-size:11px}
+ .category-section,.store-highlights,.smart-search,.catalog-section,.info-section,.benefits,.learn,.contact{width:min(1160px,calc(100% - 48px))}.mini-heading h2,.section-heading h2{font-size:34px}.mini-heading p,.section-heading p{font-size:12px}.cat-circle{width:100px;height:100px;font-size:42px}.quick-cats b{font-size:12px}.store-highlights{min-height:82px}.store-highlights strong{font-size:13px}.store-highlights p{font-size:10px}.smart-search{min-height:76px}.search-text strong{font-size:17px}.search-text small{font-size:10px}.smart-search-field{height:46px}.smart-search-field input{font-size:12px}
+ .total-card{min-height:76px}.total-card strong{font-size:42px}.total-card b{font-size:15px}#catalog-grid{gap:16px}#catalog-grid .product-card{flex-basis:calc((100% - 48px)/4);border-radius:16px}.product-image-wrap{height:240px}.product-body{padding:13px 14px 15px}.product-body h3{font-size:17px}.product-scientific,.product-stock{font-size:10px}.product-actions button{min-height:38px;font-size:10px}.service-image{height:140px}.service-copy h3{font-size:12px}.service-copy p{font-size:10px}.benefits>div{min-height:92px}.learn{padding:30px 34px}.contact{padding:27px 34px}
 }
+
+/* TABLET / LAPTOP PEQUEÑA */
+@media (max-width:1050px) and (min-width:701px){
+ .header{width:calc(100% - 24px);grid-template-columns:235px minmax(210px,1fr) 58px 58px 145px}.brand img{width:64px;height:60px}.brand-text strong{font-size:25px}.brand-text small{font-size:8px}.nav{gap:4px}.nav a{padding:8px 14px}.hero{width:calc(100% - 24px);grid-template-columns:51% 49%}.hero-copy{padding-left:52px;padding-right:24px}.hero-title{font-size:43px}.quick-cats{gap:6px}.cat-circle{width:76px;height:76px;font-size:32px}#catalog-grid .product-card{flex-basis:calc((100% - 26px)/3)}.service-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+/* CELULAR */
+@media (max-width:700px){
+ body{padding-bottom:76px}.topbar{min-height:31px;padding:6px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:9px}.topbar span{overflow:hidden;text-overflow:ellipsis}.topbar span:after{content:' · WhatsApp: 712 147 9122'}
+ .header{width:100%;min-height:68px;padding:7px 10px;display:grid;grid-template-columns:minmax(0,1fr) 48px 48px 48px;gap:4px;border-bottom:1px solid #eee9df}.brand{gap:4px}.brand img{width:52px;height:50px}.brand-text strong{font-size:21px}.brand-text small{max-width:155px;font-size:7px;white-space:normal;line-height:1.15}.header-search,.header-whatsapp{display:none}.header-action{display:flex;width:48px;height:48px}.header-action-icon{font-size:24px}.header-action small{font-size:7px}.menu-toggle{display:grid;place-items:center;width:46px;height:46px;font-size:19px}
+ .nav{position:absolute;top:99px;left:8px;right:8px;z-index:100;display:none;padding:8px;flex-direction:column;align-items:stretch;gap:3px;border:1px solid #e6e5dd;border-radius:14px;box-shadow:0 16px 35px rgba(22,64,39,.18)}.nav.open{display:flex}.nav a{width:100%;padding:11px 14px;text-align:center}
+ .hero{width:calc(100% - 16px);min-height:0;margin:9px auto 15px;display:grid;grid-template-columns:1fr;border-radius:18px}.hero:before{font-size:56px;left:-20px;top:7px}.hero-copy{min-height:270px;padding:30px 24px 26px 37px;background:linear-gradient(120deg,#fffaf1 0%,#fffdf8 100%)}.hero-eyebrow{font-size:9px}.hero-title{max-width:330px;margin-top:8px;font-size:38px;line-height:.96}.hero-message{margin-top:12px;font-size:14px}.hero-secondary{font-size:9px}.hero-actions{margin-top:15px}.hero-actions .btn{min-height:40px;padding:9px 16px}.hero-trust{margin-top:12px;font-size:8px}.hero-art{min-height:245px;background-position:center 48%}.hero-art:after{right:12px;top:13px;padding:9px 11px;border-radius:12px;font-size:13px}
+ .promo-strip{width:calc(100% - 16px);margin:0 auto 18px;padding:10px 8px;gap:7px;border-radius:12px}.promo-strip div{display:block;text-align:center}.promo-strip b{display:block;font-size:13px}.promo-strip span{display:block;font-size:7px}.promo-strip i{flex:0 0 4px}
+ .category-section,.store-highlights,.smart-search,.catalog-section,.info-section,.benefits,.learn,.contact{width:calc(100% - 16px)}.mini-heading h2,.section-heading h2{font-size:25px}.mini-heading p,.section-heading p{font-size:9px}
+ .quick-cats{margin-top:14px;display:flex;gap:8px;overflow-x:auto;padding:3px 2px 10px;scroll-snap-type:x proximity;scrollbar-width:none}.quick-cats::-webkit-scrollbar{display:none}.quick-cats button{flex:0 0 82px;scroll-snap-align:start}.cat-circle{width:68px;height:68px;border-width:4px;font-size:29px}.quick-cats b{font-size:8px}
+ .store-highlights{padding:10px;grid-template-columns:1fr 1fr;gap:7px}.store-highlights>div{min-height:55px;padding:7px;justify-content:flex-start;border:0;border-radius:10px;background:rgba(255,255,255,.58)}.store-highlights>div>span{font-size:20px}.store-highlights strong{font-size:9px}.store-highlights p{font-size:7px}
+ .smart-search{padding:12px;grid-template-columns:38px 1fr;gap:8px;border-radius:14px}.search-icon{width:36px;height:36px;font-size:20px}.search-text strong{font-size:13px}.search-text small{font-size:7px}.smart-search-field{grid-column:1 / -1;width:100%;height:42px}.smart-search-field input{font-size:10px}.smart-search-field button{min-width:82px}
+ .catalog-title h2:before,.catalog-title h2:after{margin:0 5px;font-size:20px}.total-card{min-height:64px;padding:10px 12px;align-items:center;gap:8px}.total-card>div{gap:6px}.total-card strong{font-size:31px}.total-card b{font-size:10px}.total-card small{max-width:92px;text-align:right;font-size:7px}
+ #catalog-grid{gap:10px;padding:4px 1px 16px;scroll-padding-left:1px}#catalog-grid .product-card{flex:0 0 calc((100% - 10px)/2);border-radius:12px}.product-image-wrap{height:160px}.product-body{padding:9px}.product-body .tag{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:6px}.product-body h3{font-size:12px}.product-scientific{font-size:7px}.product-stock{font-size:7px}.product-actions{grid-template-columns:1fr}.product-actions button{min-height:32px;font-size:8px}.favorite{top:7px;right:7px;width:30px;height:30px;font-size:15px}.catalog-arrow{top:105px;width:36px;height:36px;font-size:23px}.catalog-arrow-prev{left:-8px}.catalog-arrow-next{right:-8px}
+ .info-section{padding:20px 10px}.service-grid{margin-top:14px;display:flex;gap:9px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}.service-grid::-webkit-scrollbar{display:none}.service-grid article{display:block!important;flex:0 0 72%;max-width:260px}.service-image{height:115px}
+ .benefits{grid-template-columns:1fr 1fr;gap:7px}.benefits>div{min-height:72px;padding:9px}.benefit-icon{width:31px;height:31px;flex-basis:31px}.benefits b{font-size:9px}.benefits p{font-size:7px}.learn{padding:18px;grid-template-columns:1fr;gap:12px}.learn h2{font-size:22px}.learn-cards{grid-template-columns:1fr 1fr}.contact{padding:18px;grid-template-columns:1fr;gap:12px;text-align:center}.contact .btn{width:100%}
+ footer{padding:25px 18px 95px;grid-template-columns:1fr 1fr;gap:22px}.footer-brand{grid-column:1 / -1}.mobile-bottom-nav{left:0;right:0;bottom:0;width:100%;min-height:65px;border-radius:0;border-top:1px solid #e5e5df;background:rgba(255,255,255,.97);box-shadow:0 -6px 20px rgba(21,64,39,.08);backdrop-filter:blur(10px)}.mobile-bottom-nav a{min-width:0;font-size:8px}.mobile-bottom-nav a span{font-size:20px}.drawer{width:min(92vw,380px)}
+ .modal{padding:10px;align-items:flex-start}.modal-box{width:100%;max-width:520px;max-height:calc(100dvh - 20px);margin:auto;display:flex;flex-direction:column;overflow-y:auto;border-radius:18px}.modal-box>#modal-image{order:1;width:100%;height:230px;min-height:230px;max-height:230px;object-fit:cover}.modal-box>#ficha-navigation{order:2;flex:0 0 auto;padding:10px 12px!important}.modal-body{order:3;width:100%;overflow:visible;padding:8px 18px 22px!important}.modal-body h2{font-size:25px}.specs{grid-template-columns:1fr;gap:7px}.modal-actions{grid-template-columns:1fr;gap:7px}.modal .close{position:absolute;top:10px;right:10px;background:#fff;box-shadow:0 3px 12px rgba(0,0,0,.16)}
+}
+
+@media (max-width:390px){.brand-text strong{font-size:19px}.brand-text small{display:none}.header{grid-template-columns:minmax(0,1fr) 44px 44px 44px}.header-action{width:44px}.menu-toggle{width:42px;height:42px}.hero-copy{padding-left:31px;padding-right:18px}.hero-title{font-size:34px}.hero-art{min-height:220px}#catalog-grid .product-card{flex-basis:76%}.product-image-wrap{height:190px}.benefits{grid-template-columns:1fr}}
