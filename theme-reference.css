@@ -1,46 +1,38 @@
-/* Florambar — ajustes de interfaz responsive
-   Este archivo contiene únicamente correcciones que deben prevalecer
-   sobre styles.css. */
+/* Florambar — ajustes finales de tamaño y navegación */
 
-/* En computadora la navegación ya está visible, por lo que el botón
-   hamburguesa no debe aparecer. También recuperamos el espacio que ocupaba. */
-@media (min-width:701px){
-  .menu-toggle{display:none!important;}
-  .header{
-    grid-template-columns:285px minmax(310px,1fr) 72px 72px 180px!important;
-  }
+/* En computadora el menú principal ya está visible; no hace falta el botón hamburguesa. */
+.menu-toggle{display:none!important}
+
+/* Portada más compacta para que no ocupe casi toda la pantalla. */
+.hero{min-height:330px!important}
+.hero-copy{min-height:330px!important;padding-top:38px!important;padding-bottom:36px!important}
+.hero-art{min-height:330px!important;height:330px!important}
+.hero-title{font-size:52px!important}
+
+/* Mantener las fotos del catálogo contenidas y uniformes. */
+.product-image-wrap{height:205px!important}
+.product-image-wrap>img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
+
+@media(max-width:1050px){
+  .hero{min-height:310px!important}
+  .hero-copy{min-height:310px!important;padding-top:32px!important;padding-bottom:30px!important}
+  .hero-art{min-height:310px!important;height:310px!important}
+  .hero-title{font-size:43px!important}
 }
 
-/* En móvil sí usamos el botón hamburguesa. La clase .open la activa
-   script.js cuando se toca el botón. */
-@media (max-width:700px){
-  .menu-toggle{
-    display:grid!important;
-    place-items:center!important;
-  }
-  .nav{
-    display:none!important;
-    position:absolute!important;
-    top:104px!important;
-    left:8px!important;
-    right:8px!important;
-    z-index:180!important;
-    padding:8px!important;
-    flex-direction:column!important;
-    align-items:stretch!important;
-    gap:3px!important;
-    border:1px solid #e5e6df!important;
-    border-radius:15px!important;
-    background:#fff!important;
-    box-shadow:0 18px 38px rgba(20,62,38,.20)!important;
-  }
-  .nav.open,
-  .nav.show{
-    display:flex!important;
-  }
-  .nav a{
-    width:100%!important;
-    padding:11px!important;
-    text-align:center!important;
-  }
+@media(max-width:700px){
+  .menu-toggle{display:grid!important;place-items:center!important}
+  .nav{top:104px!important;z-index:180!important}
+  .nav.open{display:flex!important}
+  .hero{min-height:0!important}
+  .hero-copy{min-height:245px!important;padding-top:27px!important;padding-bottom:24px!important}
+  .hero-art{min-height:190px!important;height:190px!important}
+  .hero-title{font-size:36px!important}
+  .product-image-wrap{height:180px!important}
+}
+
+@media(max-width:390px){
+  .hero-copy{min-height:225px!important}
+  .hero-art{min-height:175px!important;height:175px!important}
+  .hero-title{font-size:33px!important}
 }
