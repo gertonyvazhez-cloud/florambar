@@ -102,7 +102,6 @@
     const nav=document.getElementById("nav");
     if(!button||!nav) return;
 
-    /* Sustituimos el botón por una copia para eliminar manejadores duplicados. */
     const clean=button.cloneNode(true);
     button.parentNode.replaceChild(clean,button);
     clean.setAttribute("aria-expanded","false");
@@ -134,4 +133,48 @@
 
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",initMenu);
   else initMenu();
+})();
+
+/* Catálogo: la fotografía abre la misma ficha técnica que el botón "Ver ficha". */
+(function(){
+  function openFromImage(img){
+    if(!img) return;
+    const card=img.closest(".product-card");
+    if(!card) return;
+    const id=img.dataset.id;
+    const view=id ? card.querySelector(`[data-view="${id}"]`) : card.querySelector("[data-view]");
+    if(view) view.click();
+  }
+
+  document.addEventListener("click",function(e){
+    const img=e.target.closest(".product-image-wrap img");
+    if(!img) return;
+    e.preventDefault();
+    openFromImage(img);
+  });
+
+  document.addEventListener("keydown",function(e){
+    if(e.key!=="Enter" && e.key!==" ") return;
+    const img=e.target.closest && e.target.closest(".product-image-wrap img");
+    if(!img) return;
+    e.preventDefault();
+    openFromImage(img);
+  });
+
+  function prepareImages(){
+    document.querySelectorAll(".product-image-wrap img").forEach(function(img){
+      img.style.cursor="pointer";
+      img.setAttribute("role","button");
+      img.setAttribute("tabindex","0");
+      img.setAttribute("aria-label",`Abrir ficha técnica de ${img.alt||"esta planta"}`);
+    });
+  }
+
+  const grid=document.getElementById("catalog-grid");
+  if(grid){
+    prepareImages();
+    new MutationObserver(prepareImages).observe(grid,{childList:true,subtree:true});
+  }else if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded",prepareImages);
+  }
 })();
