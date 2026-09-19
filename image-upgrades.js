@@ -77,9 +77,35 @@
   };
 })();
 
-/* IMPORTANTE: el menú móvil se controla únicamente desde index.html/script.js.
-   Antes había aquí un segundo controlador que abría y cerraba el menú en el
-   mismo toque. Se eliminó para que cada toque haga una sola acción. */
+/* Menú móvil: un solo controlador en fase de captura.
+   Así ningún manejador antiguo puede abrirlo y cerrarlo en el mismo toque. */
+(function(){
+  function closeMenu(){
+    const nav=document.getElementById("nav");
+    const btn=document.getElementById("menu-toggle");
+    if(nav) nav.classList.remove("open");
+    if(btn){ btn.setAttribute("aria-expanded","false"); btn.textContent="☰"; }
+  }
+
+  document.addEventListener("click",function(e){
+    const btn=e.target.closest && e.target.closest("#menu-toggle");
+    const nav=document.getElementById("nav");
+    if(btn && nav){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      const opening=!nav.classList.contains("open");
+      nav.classList.toggle("open",opening);
+      btn.setAttribute("aria-expanded",opening?"true":"false");
+      btn.textContent=opening?"×":"☰";
+      return;
+    }
+    const link=e.target.closest && e.target.closest("#nav a");
+    if(link) closeMenu();
+  },true);
+
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeMenu(); });
+  window.addEventListener("resize",function(){ if(window.innerWidth>700) closeMenu(); });
+})();
 
 /* Catálogo: la fotografía abre la misma ficha técnica que el botón "Ver ficha". */
 (function(){
