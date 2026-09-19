@@ -1,7 +1,8 @@
 /* Florambar — ajustes finales de tamaño y navegación */
 
-/* Mostrar nuevamente el botón de menú también en computadora. */
-.menu-toggle{display:grid!important;place-items:center!important}
+/* En computadora usamos el menú horizontal, como en el diseño de referencia.
+   El botón hamburguesa queda reservado para celular/tablet pequeña. */
+.menu-toggle{display:none!important}
 
 /* Portada más compacta para que no ocupe casi toda la pantalla. */
 .hero{min-height:330px!important}
@@ -29,8 +30,9 @@
 }
 
 @media(max-width:700px){
-  .menu-toggle{display:grid!important;place-items:center!important}
-  .nav{top:104px!important;z-index:180!important}
+  /* En móvil sí aparece el botón y abre/cierra el menú mediante .open. */
+  .menu-toggle{display:grid!important;place-items:center!important;position:relative!important;z-index:191!important;cursor:pointer!important}
+  .nav{top:104px!important;z-index:190!important;display:none!important}
   .nav.open{display:flex!important}
   .hero{min-height:0!important}
   .hero-copy{min-height:245px!important;padding-top:27px!important;padding-bottom:24px!important}
