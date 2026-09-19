@@ -10,8 +10,19 @@ a:active{
 }
 .brand,
 .brand:link,
-.brand:visited{
+.brand:visited,
+.brand:hover,
+.brand:active{
   color:inherit!important;
+  text-decoration:none!important;
+}
+.brand-text strong{
+  color:#6b301f!important;
+  text-decoration:none!important;
+}
+.brand-text small{
+  color:#0c663e!important;
+  text-decoration:none!important;
 }
 
 /* En computadora usamos el menú horizontal, como en el diseño de referencia.
@@ -21,7 +32,16 @@ a:active{
 /* Portada más compacta para que no ocupe casi toda la pantalla. */
 .hero{min-height:330px!important}
 .hero-copy{min-height:330px!important;padding-top:38px!important;padding-bottom:36px!important}
-.hero-art{min-height:330px!important;height:330px!important}
+.hero-art{
+  min-height:330px!important;
+  height:330px!important;
+  background-image:
+    linear-gradient(90deg,rgba(255,253,247,.04),rgba(255,245,226,.08)),
+    url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Potted%20Plants%20%289198472766%29.jpg?width=1600')!important;
+  background-size:cover!important;
+  background-position:center!important;
+  filter:none!important;
+}
 .hero-title{font-size:52px!important}
 
 /* Mantener las fotos del catálogo contenidas y uniformes. */
