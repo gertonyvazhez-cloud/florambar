@@ -36,6 +36,62 @@ a:active{
 .catalog-title{margin-top:0!important;margin-bottom:7px!important}
 .results-info{margin-top:4px!important;margin-bottom:4px!important}
 
+/* FICHA TÉCNICA: navegación tipo galería.
+   Ya no aparece la barra grande Anterior/Siguiente arriba. */
+.modal-box{position:relative!important}
+#ficha-navigation{
+  position:absolute!important;
+  inset:0!important;
+  z-index:18!important;
+  height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  pointer-events:none!important;
+}
+#ficha-navigation button{
+  position:absolute!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  width:42px!important;
+  min-width:42px!important;
+  height:42px!important;
+  min-height:42px!important;
+  padding:0!important;
+  border:1px solid rgba(0,107,61,.14)!important;
+  border-radius:50%!important;
+  background:rgba(255,255,255,.94)!important;
+  color:#006b3d!important;
+  box-shadow:0 5px 16px rgba(24,72,45,.18)!important;
+  display:grid!important;
+  place-items:center!important;
+  font-size:0!important;
+  line-height:1!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+#ficha-navigation button span{display:none!important}
+#ficha-prev{left:12px!important}
+#ficha-next{left:calc(42% - 54px)!important;right:auto!important}
+#ficha-prev:before{content:'‹';font-size:31px;line-height:1}
+#ficha-next:before{content:'›';font-size:31px;line-height:1}
+#ficha-position{
+  position:absolute!important;
+  top:12px!important;
+  left:21%!important;
+  transform:translateX(-50%)!important;
+  padding:5px 10px!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.88)!important;
+  color:#315844!important;
+  font-size:10px!important;
+  font-weight:800!important;
+  box-shadow:0 3px 12px rgba(30,65,44,.10)!important;
+  pointer-events:none!important;
+}
+
 @media(max-width:1050px){
   .hero{min-height:310px!important}
   .hero-copy{min-height:310px!important;padding-top:32px!important;padding-bottom:30px!important}
@@ -78,6 +134,12 @@ a:active{
   .category-section{margin-bottom:3px!important}
   .store-highlights{margin-bottom:6px!important}
   .smart-search{margin-bottom:8px!important}
+
+  /* En móvil: una flecha a cada lado de la fotografía. */
+  #ficha-navigation button{top:28%!important;width:40px!important;min-width:40px!important;height:40px!important;min-height:40px!important}
+  #ficha-prev{left:9px!important}
+  #ficha-next{left:auto!important;right:9px!important}
+  #ficha-position{top:9px!important;left:50%!important}
 }
 
 @media(max-width:390px){
