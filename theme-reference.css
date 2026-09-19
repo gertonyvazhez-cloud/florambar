@@ -1,5 +1,19 @@
 /* Florambar — ajustes finales de tamaño y navegación */
 
+/* Evita el estilo azul/subrayado que el navegador aplica por defecto a enlaces. */
+a,
+a:link,
+a:visited,
+a:hover,
+a:active{
+  text-decoration:none!important;
+}
+.brand,
+.brand:link,
+.brand:visited{
+  color:inherit!important;
+}
+
 /* En computadora usamos el menú horizontal, como en el diseño de referencia.
    El botón hamburguesa queda reservado para celular/tablet pequeña. */
 .menu-toggle{display:none!important}
