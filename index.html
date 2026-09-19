@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://gertonyvazhez-cloud.github.io/florambar/logo.png">
 <link rel="icon" href="logo.png">
 <link rel="stylesheet" href="styles.css?v=8">
-<link rel="stylesheet" href="theme-reference.css?v=10">
+<link rel="stylesheet" href="theme-reference.css?v=11">
 </head>
 <body>
 <div class="topbar"><span>🌿 Florambar · Todo para tu jardín, en un solo lugar</span><strong>WhatsApp: 712 147 9122</strong></div>
@@ -25,7 +25,7 @@
 <button class="header-action" id="open-favorites" type="button" aria-label="Favoritos"><span class="header-action-icon">♡<b id="fav-count">0</b></span><small>Favoritos</small></button>
 <button class="header-action" id="open-cart" type="button" aria-label="Carrito"><span class="header-action-icon">🛒<b id="cart-count">0</b></span><small>Carrito</small></button>
 <a class="header-whatsapp" href="https://wa.me/527121479122?text=Hola%20Florambar%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20plantas." target="_blank" rel="noopener"><span>💬</span><div><small>Pedidos por WhatsApp</small><b>712 147 9122</b></div></a>
-<button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menú">☰</button>
+<button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">☰</button>
 </header>
 <nav class="nav" id="nav"><a href="#inicio" class="active">Inicio</a><a href="#catalogo">Catálogo</a><a href="#servicios">Servicios</a><a href="#aprende">Aprende</a><a href="#contacto">Contacto</a></nav>
 <main>
@@ -61,5 +61,25 @@
 <div class="toast" id="toast"></div>
 <script src="script.js?v=8"></script>
 <script src="image-upgrades.js?v=3"></script>
+<script>
+window.addEventListener('load',function(){
+  const btn=document.getElementById('menu-toggle');
+  const nav=document.getElementById('nav');
+  if(!btn||!nav)return;
+  function closeMenu(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.textContent='☰';}
+  btn.onclick=function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    const opening=!nav.classList.contains('open');
+    nav.classList.toggle('open',opening);
+    btn.setAttribute('aria-expanded',opening?'true':'false');
+    btn.textContent=opening?'×':'☰';
+  };
+  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMenu);});
+  document.addEventListener('click',function(e){if(nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn)closeMenu();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
+  window.addEventListener('resize',function(){if(window.innerWidth>700)closeMenu();});
+});
+</script>
 </body>
 </html>
