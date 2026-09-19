@@ -13,11 +13,33 @@
 .product-image-wrap{height:205px!important}
 .product-image-wrap>img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
 
+/* =========================================================
+   CATÁLOGO MÁS ÁGIL
+   Acerca categorías, búsqueda y resultados para evitar
+   espacios largos al elegir Interior, Exterior, Con flor, etc.
+   ========================================================= */
+.category-section{margin-bottom:5px!important}
+.quick-cats{margin-bottom:0!important}
+.store-highlights{margin-top:0!important;margin-bottom:8px!important;min-height:54px!important;padding-top:7px!important;padding-bottom:7px!important}
+.smart-search{margin-top:0!important;margin-bottom:10px!important;padding-top:9px!important;padding-bottom:9px!important}
+.catalog-section{margin-top:0!important;padding-top:0!important;scroll-margin-top:-95px!important}
+.catalog-title{margin-top:0!important;margin-bottom:5px!important}
+.catalog-title .section-eyebrow{font-size:8px!important}
+.catalog-title h2{margin-top:1px!important;font-size:30px!important;line-height:1!important}
+.catalog-title p{margin-top:2px!important}
+.total-card{min-height:52px!important;margin-bottom:3px!important;padding:6px 15px!important}
+.total-card strong{font-size:32px!important}
+.total-card b{font-size:13px!important}
+.results-info{min-height:10px!important;margin:3px 0 5px!important}
+#catalog-grid{scroll-margin-top:118px!important}
+
 @media(max-width:1050px){
   .hero{min-height:310px!important}
   .hero-copy{min-height:310px!important;padding-top:32px!important;padding-bottom:30px!important}
   .hero-art{min-height:310px!important;height:310px!important}
   .hero-title{font-size:43px!important}
+  .store-highlights{margin-bottom:7px!important}
+  .smart-search{margin-bottom:8px!important}
 }
 
 @media(max-width:700px){
@@ -29,6 +51,19 @@
   .hero-art{min-height:190px!important;height:190px!important}
   .hero-title{font-size:36px!important}
   .product-image-wrap{height:180px!important}
+
+  /* En móvil todo queda todavía más unido. */
+  .category-section{margin-bottom:2px!important}
+  .quick-cats{padding-bottom:4px!important}
+  .store-highlights{margin-bottom:6px!important;padding:6px!important}
+  .smart-search{margin-bottom:7px!important;padding:8px!important}
+  .catalog-section{scroll-margin-top:-70px!important}
+  .catalog-title{margin-bottom:3px!important}
+  .catalog-title h2{font-size:25px!important}
+  .total-card{min-height:48px!important;padding:5px 10px!important}
+  .total-card strong{font-size:28px!important}
+  .results-info{margin:2px 0 4px!important}
+  #catalog-grid{scroll-margin-top:82px!important}
 }
 
 @media(max-width:390px){
