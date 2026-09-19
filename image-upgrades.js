@@ -93,3 +93,45 @@
     img.dataset.real="1";
   };
 })();
+
+/* Menú Florambar: controlador independiente para que el botón funcione
+   aunque otra parte del script principal falle antes de enlazarlo. */
+(function(){
+  function initMenu(){
+    const button=document.getElementById("menu-toggle");
+    const nav=document.getElementById("nav");
+    if(!button||!nav) return;
+
+    /* Sustituimos el botón por una copia para eliminar manejadores duplicados. */
+    const clean=button.cloneNode(true);
+    button.parentNode.replaceChild(clean,button);
+    clean.setAttribute("aria-expanded","false");
+
+    clean.addEventListener("click",function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      const open=nav.classList.toggle("open");
+      clean.setAttribute("aria-expanded",open?"true":"false");
+      clean.textContent=open?"×":"☰";
+    });
+
+    nav.querySelectorAll("a").forEach(function(link){
+      link.addEventListener("click",function(){
+        nav.classList.remove("open");
+        clean.setAttribute("aria-expanded","false");
+        clean.textContent="☰";
+      });
+    });
+
+    document.addEventListener("click",function(e){
+      if(window.innerWidth<=700 && nav.classList.contains("open") && !nav.contains(e.target) && e.target!==clean){
+        nav.classList.remove("open");
+        clean.setAttribute("aria-expanded","false");
+        clean.textContent="☰";
+      }
+    });
+  }
+
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",initMenu);
+  else initMenu();
+})();
