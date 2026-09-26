@@ -25,3 +25,4 @@ function bindAgro(){buildViewer();const b=$('#agro-open');if(!b||b.dataset.clean
 function init(){bindAgro();buildCleanProductNav();syncUI();const mi=$('#modal-image');if(mi)mi.addEventListener('load',positionProductNav)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();new MutationObserver(()=>{bindAgro();buildCleanProductNav();syncUI();requestAnimationFrame(positionProductNav)}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class','src']});
 })();
+(()=>{if(document.querySelector('script[data-fl-store-upgrades]'))return;const s=document.createElement('script');s.src='store-upgrades.js?v=1';s.defer=true;s.dataset.flStoreUpgrades='1';document.head.appendChild(s)})();
