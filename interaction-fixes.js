@@ -1,60 +1,15 @@
 (()=>{
 'use strict';
 const $=(s,r=document)=>r.querySelector(s);
-
-/* Tocar la FOTO de una planta abre su ficha; el corazon mantiene su propia accion. */
-function imageTap(e){
- const img=e.target&&e.target.closest?e.target.closest('#catalog-grid .product-image-wrap > img[data-id]'):null;
- if(!img)return;
- e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
- const id=Number(img.dataset.id);
- if(Number.isFinite(id)&&typeof openModal==='function')openModal(id);
-}
+function imageTap(e){const img=e.target&&e.target.closest?e.target.closest('#catalog-grid .product-image-wrap > img[data-id]'):null;if(!img)return;e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();const id=Number(img.dataset.id);if(Number.isFinite(id)&&typeof openModal==='function')openModal(id)}
 document.addEventListener('click',imageTap,true);
-
-/* Mantener el menu principal fuera de cualquier visor/modal. */
-function syncMenuVisibility(){
- const menu=$('#menu-toggle'); if(!menu)return;
- const productOpen=$('#product-modal')?.classList.contains('show');
- const agroOpen=$('#fl-agro-viewer')?.classList.contains('open');
- menu.style.setProperty('display',(productOpen||agroOpen)?'none':'','important');
- menu.style.pointerEvents=(productOpen||agroOpen)?'none':'';
-}
-
-/* Agroproductos: mostrar uno por uno. La fuente es un collage, por eso se limita el tamaño visible para evitar ampliacion excesiva. */
+function syncMenuVisibility(){const menu=$('#menu-toggle');if(!menu)return;const productOpen=$('#product-modal')?.classList.contains('show');const agroOpen=$('#fl-agro-viewer')?.classList.contains('open');menu.style.setProperty('display',(productOpen||agroOpen)?'none':'','important');menu.style.pointerEvents=(productOpen||agroOpen)?'none':''}
 const AGRO_SRC='a_clean_well_lit_product_showcase_collage_adverti.png';
-const AGRO=[
- {name:'AGR • ABONO',pos:'0% 0%'},
- {name:'AGR • BRILLO',pos:'50% 0%'},
- {name:'AGR • GARDEN',pos:'100% 0%'},
- {name:'AGR • FUNGICIDA',pos:'0% 100%'},
- {name:'AGR • ABONO Orgánico',pos:'50% 100%'},
- {name:'Todos los Agroproductos Florambar',all:true}
-];
+const AGRO=[{name:'AGR • ABONO',pos:'0% 0%'},{name:'AGR • BRILLO',pos:'50% 0%'},{name:'AGR • GARDEN',pos:'100% 0%'},{name:'AGR • FUNGICIDA',pos:'0% 100%'},{name:'AGR • ABONO Orgánico',pos:'50% 100%'},{name:'Todos los Agroproductos Florambar',all:true}];
 let viewer=null,index=0;
-function buildViewer(){
- if(viewer)return;
- const st=document.createElement('style');
- st.textContent=`#fl-agro-viewer{display:none;position:fixed;inset:0;z-index:2147483647;background:rgba(3,20,12,.94);align-items:center;justify-content:center;padding:18px}#fl-agro-viewer.open{display:flex}body:has(#fl-agro-viewer.open) #menu-toggle,body:has(#product-modal.show) #menu-toggle{display:none!important;visibility:hidden!important;pointer-events:none!important}.fl-agro-box{position:relative;width:min(540px,92vw);height:min(680px,80vh);background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px #0007}.fl-agro-stage{position:absolute;inset:0;background:#fff center/contain no-repeat}.fl-agro-stage.single{background-image:url('${AGRO_SRC}');background-size:300% 200%;background-repeat:no-repeat}.fl-agro-stage.all{background-image:url('${AGRO_SRC}');background-size:contain;background-position:center;background-repeat:no-repeat}.fl-agro-close,.fl-agro-prev,.fl-agro-next{position:absolute;border:0;border-radius:50%;background:#fff;color:#075b38;box-shadow:0 3px 15px #0005;font-weight:900;z-index:3}.fl-agro-close{right:12px;top:12px;width:46px;height:46px;font-size:29px}.fl-agro-prev,.fl-agro-next{top:50%;transform:translateY(-50%);width:48px;height:48px;font-size:32px}.fl-agro-prev{left:10px}.fl-agro-next{right:10px}.fl-agro-label{position:absolute;left:50%;top:16px;transform:translateX(-50%);background:#fff;color:#075b38;padding:9px 16px;border-radius:99px;font-weight:900;z-index:2;white-space:nowrap;max-width:66%;overflow:hidden;text-overflow:ellipsis}.fl-agro-count{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:#075b38;color:#fff;padding:8px 13px;border-radius:99px;font-weight:900;z-index:2}#catalog-grid .product-image-wrap>img[data-id]{cursor:pointer;touch-action:manipulation}@media(max-width:700px){.fl-agro-box{width:min(430px,90vw);height:min(590px,76vh)}.fl-agro-prev,.fl-agro-next{width:44px;height:44px}.fl-agro-label{font-size:15px}}`;
- document.head.appendChild(st);
- viewer=document.createElement('div');viewer.id='fl-agro-viewer';viewer.innerHTML='<div class="fl-agro-box"><div class="fl-agro-stage"></div><div class="fl-agro-label"></div><button class="fl-agro-close" type="button">×</button><button class="fl-agro-prev" type="button" aria-label="Anterior">‹</button><button class="fl-agro-next" type="button" aria-label="Siguiente">›</button><div class="fl-agro-count"></div></div>';
- document.body.appendChild(viewer);
- $('.fl-agro-close',viewer).onclick=()=>{viewer.classList.remove('open');syncMenuVisibility()};
- $('.fl-agro-prev',viewer).onclick=e=>{e.stopPropagation();index=(index-1+AGRO.length)%AGRO.length;renderAgro()};
- $('.fl-agro-next',viewer).onclick=e=>{e.stopPropagation();index=(index+1)%AGRO.length;renderAgro()};
- viewer.onclick=e=>{if(e.target===viewer){viewer.classList.remove('open');syncMenuVisibility()}};
-}
-function renderAgro(){
- const item=AGRO[index],stage=$('.fl-agro-stage',viewer);
- stage.className='fl-agro-stage '+(item.all?'all':'single');
- stage.style.backgroundPosition=item.all?'center':item.pos;
- $('.fl-agro-label',viewer).textContent=item.name;
- $('.fl-agro-count',viewer).textContent=(index+1)+' / '+AGRO.length;
-}
-function bindAgro(){
- buildViewer();const b=$('#agro-open');if(!b||b.dataset.cleanBound==='1')return;b.dataset.cleanBound='1';
- b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();index=0;renderAgro();viewer.classList.add('open');syncMenuVisibility()},true);
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindAgro,{once:true});else bindAgro();
-new MutationObserver(()=>{bindAgro();syncMenuVisibility()}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+function buildViewer(){if(viewer)return;const st=document.createElement('style');st.textContent=`#fl-agro-viewer{display:none;position:fixed;inset:0;z-index:2147483647;background:rgba(3,20,12,.94);align-items:center;justify-content:center;padding:22px}#fl-agro-viewer.open{display:flex}body:has(#fl-agro-viewer.open) #menu-toggle,body:has(#product-modal.show) #menu-toggle{display:none!important;visibility:hidden!important;pointer-events:none!important}.fl-agro-box{position:relative;width:min(460px,82vw);height:min(590px,72vh);background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 20px 60px #0007}.fl-agro-stage{position:absolute;inset:0;background:#fff center/contain no-repeat}.fl-agro-stage.single{background-image:url('${AGRO_SRC}');background-size:300% 200%;background-repeat:no-repeat}.fl-agro-stage.all{background-image:url('${AGRO_SRC}');background-size:contain;background-position:center;background-repeat:no-repeat}.fl-agro-close,.fl-agro-prev,.fl-agro-next{position:absolute;border:0;border-radius:50%;background:#fff;color:#075b38;box-shadow:0 3px 15px #0005;font-weight:900;z-index:3}.fl-agro-close{right:10px;top:10px;width:42px;height:42px;font-size:27px}.fl-agro-prev,.fl-agro-next{top:50%;transform:translateY(-50%);width:42px;height:42px;font-size:29px}.fl-agro-prev{left:8px}.fl-agro-next{right:8px}.fl-agro-label{position:absolute;left:50%;top:14px;transform:translateX(-50%);background:#fff;color:#075b38;padding:8px 14px;border-radius:99px;font-weight:900;z-index:2;white-space:nowrap;max-width:64%;overflow:hidden;text-overflow:ellipsis}.fl-agro-count{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);background:#075b38;color:#fff;padding:7px 12px;border-radius:99px;font-weight:900;z-index:2}#catalog-grid .product-image-wrap>img[data-id]{cursor:pointer;touch-action:manipulation}@media(max-width:700px){.fl-agro-box{width:76vw;max-width:330px;height:58vh;max-height:520px;min-height:430px}.fl-agro-label{font-size:13px;top:11px;padding:7px 12px}.fl-agro-close{width:38px;height:38px;font-size:24px}.fl-agro-prev,.fl-agro-next{width:38px;height:38px;font-size:26px}.fl-agro-count{font-size:13px;padding:6px 10px}}`;
+document.head.appendChild(st);viewer=document.createElement('div');viewer.id='fl-agro-viewer';viewer.innerHTML='<div class="fl-agro-box"><div class="fl-agro-stage"></div><div class="fl-agro-label"></div><button class="fl-agro-close" type="button">×</button><button class="fl-agro-prev" type="button" aria-label="Anterior">‹</button><button class="fl-agro-next" type="button" aria-label="Siguiente">›</button><div class="fl-agro-count"></div></div>';document.body.appendChild(viewer);$('.fl-agro-close',viewer).onclick=()=>{viewer.classList.remove('open');syncMenuVisibility()};$('.fl-agro-prev',viewer).onclick=e=>{e.stopPropagation();index=(index-1+AGRO.length)%AGRO.length;renderAgro()};$('.fl-agro-next',viewer).onclick=e=>{e.stopPropagation();index=(index+1)%AGRO.length;renderAgro()};viewer.onclick=e=>{if(e.target===viewer){viewer.classList.remove('open');syncMenuVisibility()}}}
+function renderAgro(){const item=AGRO[index],stage=$('.fl-agro-stage',viewer);stage.className='fl-agro-stage '+(item.all?'all':'single');stage.style.backgroundPosition=item.all?'center':item.pos;$('.fl-agro-label',viewer).textContent=item.name;$('.fl-agro-count',viewer).textContent=(index+1)+' / '+AGRO.length}
+function bindAgro(){buildViewer();const b=$('#agro-open');if(!b||b.dataset.cleanBound==='1')return;b.dataset.cleanBound='1';b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();index=0;renderAgro();viewer.classList.add('open');syncMenuVisibility()},true)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindAgro,{once:true});else bindAgro();new MutationObserver(()=>{bindAgro();syncMenuVisibility()}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
 })();
