@@ -5,7 +5,34 @@ const WA='527123294890',DISPLAY='712 329 4890',OLD='527121479122';
 const MISSING=new Set([71,74,77,80,83,85,86,88,91,94,97,100,102,105,108,111,114,117,119,120,173]);
 const localPhoto=id=>{id=Number(id);return id>=1&&id<=172&&!MISSING.has(id)?String(id).padStart(3,'0')+'.jpg':''};
 const CEMP_PHOTOS=["nochebuena-01.jpg","nochebuena-02.jpg","nochebuena-03.jpg","nochebuena-04.jpg","nochebuena-05.jpg","nochebuena-06.jpg","nochebuena-07.jpg"];
-function fixPlantImages(root=document){root.querySelectorAll('#catalog-grid img[data-id]').forEach(img=>{const s=localPhoto(img.dataset.id);if(s)img.src=s;img.style.cursor='pointer';img.style.touchAction='manipulation';if(img.dataset.sheetBound!=='1'){img.dataset.sheetBound='1';img.addEventListener('click',function(e){e.preventDefault();e.stopImmediatePropagation();const id=Number(this.dataset.id);if(Number.isFinite(id)&&typeof window.openModal==='function')window.openModal(id);else if(Number.isFinite(id)&&typeof openModal==='function')openModal(id)},false)}});root.querySelectorAll('img[data-cart-id]').forEach(img=>{const s=localPhoto(img.dataset.cartId);if(s)img.src=s})}
+function fixPlantImages(root=document){
+ root.querySelectorAll('#catalog-grid img[data-id]').forEach(img=>{
+  const s=localPhoto(img.dataset.id);
+  if(s && img.dataset.localAttempted!=='1'){
+   img.dataset.localAttempted='1';
+   img.addEventListener('error',function(){
+    // La foto local no existe: mostrar una alternativa legible, no imagen rota.
+    this.onerror=null;
+    this.src='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="800" height="600" fill="#eef6ec"/><text x="400" y="270" text-anchor="middle" font-size="100">🌿</text><text x="400" y="350" text-anchor="middle" font-family="Arial" font-size="32" fill="#145b39">Fotografía próximamente</text></svg>');
+   },{once:true});
+   img.src=s;
+  }
+  img.style.cursor='pointer';img.style.touchAction='manipulation';
+  if(img.dataset.sheetBound!=='1'){
+   img.dataset.sheetBound='1';
+   img.addEventListener('click',function(e){
+    e.preventDefault();e.stopImmediatePropagation();
+    const id=Number(this.dataset.id);
+    if(Number.isFinite(id)&&typeof window.openModal==='function')window.openModal(id);
+    else if(Number.isFinite(id)&&typeof openModal==='function')openModal(id);
+   },false);
+  }
+ });
+ root.querySelectorAll('img[data-cart-id]').forEach(img=>{
+  const s=localPhoto(img.dataset.cartId);
+  if(s&&img.dataset.localAttempted!=='1'){img.dataset.localAttempted='1';img.src=s}
+ });
+}
 function fixContact(root=document){root.querySelectorAll('a[href*="wa.me"]').forEach(a=>a.href=(a.getAttribute('href')||'').replace(OLD,WA));root.querySelectorAll('body *').forEach(el=>{if(!el.children.length&&el.textContent.includes('712 147 9122'))el.textContent=el.textContent.replace(/712 147 9122/g,DISPLAY)})}
 function seo(){document.title='Florambar | Vivero, nochebuenas y plantas en Atlacomulco';const d='Florambar, vivero y venta de plantas en San Lorenzo Tlacotepec, Atlacomulco, Estado de México. Nochebuena de temporada, 173 variedades, plantas de interior, exterior, flor, frutales y agroproductos.';const m=document.querySelector('meta[name="description"]');if(m)m.content=d}
 function fixCempasuchilModal(){let idx=0;const isCemp=()=>{const n=document.getElementById('modal-name');return n&&n.textContent.trim()==='Nochebuena'};const show=n=>{idx=(n+CEMP_PHOTOS.length)%CEMP_PHOTOS.length;const img=document.getElementById('modal-image');if(img)img.src=CEMP_PHOTOS[idx];const pos=document.getElementById('ficha-position');if(pos)pos.textContent=`${idx+1} de ${CEMP_PHOTOS.length}`};document.addEventListener('click',e=>{const b=e.target.closest('#ficha-prev,#ficha-next');if(!b||!isCemp())return;e.preventDefault();e.stopImmediatePropagation();show(idx+(b.id==='ficha-next'?1:-1))},true);const sync=()=>{if(isCemp()){const img=document.getElementById('modal-image');if(img&&!CEMP_PHOTOS.some(p=>img.getAttribute('src')===p)){idx=0;show(0)}}};new MutationObserver(sync).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});}
