@@ -430,6 +430,19 @@ async function cargarFoto(p,img){
 
  if(!p||!img)return;
 
+ // Priorizar las fotografías del catálogo guardadas en el repositorio.
+ // Evita que búsquedas externas sustituyan las imágenes locales.
+ const faltantes=new Set([71,74,77,80,83,85,86,88,91,94,97,100,102,105,108,111,114,117,119,120,173]);
+ const id=Number(p.id);
+ if(Number.isInteger(id)&&id>=1&&id<=172&&!faltantes.has(id)){
+   img.src=String(id).padStart(3,'0')+'.jpg';
+   img.onerror=()=>{img.onerror=null;img.src=placeholder(p)};
+   return;
+ }
+ // Si no hay fotografía local verificada, conservar una imagen de reserva
+ // en lugar de mostrar el ícono de imagen rota.
+ img.onerror=()=>{img.onerror=null;img.src=placeholder(p)};
+
 
  /* =========================================================
     ÚNICA CORRECCIÓN:
